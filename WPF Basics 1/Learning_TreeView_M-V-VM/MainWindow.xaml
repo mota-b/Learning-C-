@@ -1,0 +1,127 @@
+﻿<Window x:Class="Learning_TreeView_M_V_VM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Learning_TreeView_M_V_VM"
+        xmlns:convs="clr-namespace:Learning_TreeView_M_V_VM.Converters"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <!-- StackPanel-1 -->
+    
+    <Grid >
+        <!--#region Grid Deffinition-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <!--#endregion-->
+        
+        <Grid
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="3"
+            Grid.ColumnSpan="1">
+            <!--#region TreeView: myDiscsView-->
+            <TreeView x:Name="myDiscsView" ItemsSource="{Binding Items}">
+
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="{x:Type TreeViewItem}">
+                        <Setter Property="IsExpanded"
+                                Value="{Binding IsExpanded, Mode= TwoWay  }" >
+                        </Setter>
+                    </Style>
+                </TreeView.ItemContainerStyle>
+
+                <TreeView.ItemTemplate>
+
+                    <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                        <!-- Each Header Item Style -->
+                        <StackPanel Orientation="Horizontal">
+                            <Image 
+                                        Margin="3"
+                                        Width="20"
+                                        Source="{Binding Type,
+                                                    Converter={x:Static convs:HeaderToImageConverter.Instance}
+                                        
+                                       
+                                       
+                                        }">
+                            </Image>
+                            <TextBlock
+                                        VerticalAlignment="Center"
+                                        Text="{Binding Name}"> <!-- The data of each Item comes from : "The HeaderTemplate" -->
+
+                            </TextBlock>
+
+                        </StackPanel>
+                        <!-- END-Each Header Item Style -->
+
+
+                    </HierarchicalDataTemplate>
+                    
+                </TreeView.ItemTemplate>
+                
+            </TreeView>
+            <!--#endregion-->
+        </Grid>
+
+        <Grid
+            Grid.Row="2"
+            Grid.Column="1"
+            Grid.RowSpan="1"
+            Grid.ColumnSpan="1">
+            <!--#region TreeView: myDiscsView2-->
+            <TreeView x:Name="myDiscsView2" ItemsSource="{Binding Items}">
+
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="{x:Type TreeViewItem}">
+                        <Setter Property="IsExpanded"
+                                Value="{Binding IsExpanded, Mode= TwoWay  }" >
+                        </Setter>
+                    </Style>
+                </TreeView.ItemContainerStyle>
+
+                <TreeView.ItemTemplate>
+
+                    <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                        <!-- Each Header Item Style -->
+                        <StackPanel Orientation="Horizontal">
+                            <Image 
+                                        Margin="3"
+                                        Width="20"
+                                        Source="{Binding Type,
+                                                    Converter={x:Static convs:HeaderToImageConverter.Instance}
+                                        
+                                       
+                                       
+                                        }">
+                            </Image>
+                            <TextBlock
+                                        VerticalAlignment="Center"
+                                        Text="{Binding Name}"> <!-- The data of each Item comes from : "The HeaderTemplate" -->
+
+                            </TextBlock>
+
+                        </StackPanel>
+                        <!-- END-Each Header Item Style -->
+
+
+                    </HierarchicalDataTemplate>
+
+                </TreeView.ItemTemplate>
+
+            </TreeView>
+            <!--#endregion-->
+        </Grid>
+
+
+    </Grid>
+    <!-- END StackPanel-1 -->
+</Window>
